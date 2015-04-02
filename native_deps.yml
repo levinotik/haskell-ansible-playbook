@@ -1,8 +1,0 @@
----
-- name: install zlib1g-dev
-  apt: name=zlib1g-dev state=present
-  sudo: yes
-
-- name: install libcurl4-gnutls-dev
-  apt: name=libcurl4-gnutls-dev state=present
-  sudo: yes

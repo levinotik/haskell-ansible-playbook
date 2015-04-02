@@ -1,5 +1,0 @@
----
-- include: ghc.yml
-- include: cabal.yml
-- include: path.yml
-- include: native_deps.yml
