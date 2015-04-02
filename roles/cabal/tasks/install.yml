@@ -1,0 +1,15 @@
+---
+# file: install.yml
+
+- name: install cabal install 1.20
+  apt: name=cabal-install=1.20
+  sudo: yes
+
+- name: install happy-1.19.4
+  apt: name=happy=1.19.4
+  sudo: yes
+
+- name: install  alex-3.1.3
+  apt: name=alex=3.1.3
+  sudo: yes
+

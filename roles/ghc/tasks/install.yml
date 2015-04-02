@@ -1,0 +1,28 @@
+---
+# file: install.yml
+
+- name: update repo cache
+  apt: update_cache=yes
+  sudo: yes
+
+- name: install software-properties-common
+  apt: name=software-properties-common
+  sudo: yes
+  when: ansible_distribution_version|int >= 12.10
+
+- name: install python-software-properties
+  apt: name=python-software-properties
+  sudo: yes
+  when: ansible_distribution_version|int <= 12.04
+
+- name: add PPA repo
+  apt_repository: repo='ppa:hvr/ghc' state=present
+  sudo: yes
+
+- name: update repo cache
+  apt: update_cache=yes
+  sudo: yes
+
+- name: install ghc
+  apt: name=ghc=7.8.4 state=present
+  sudo: yes
