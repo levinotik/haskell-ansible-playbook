@@ -1,36 +1,28 @@
 ---
 - name: symlink ghc
-  shell: >
-    ln -s /opt/ghc/7.8.4/bin/ghc /usr/bin/ghc
+- file: src=/opt/ghc/7.8.4/bin/ghc dest=/usr/bin/ghc state=link
   sudo: yes
 
 - name: symlink cabal
-  shell: >
-    ln -s /opt/cabal/1.20/bin/cabal /usr/bin/cabal
+- file: src=/opt/cabal/1.20/bin/cabal dest=/usr/bin/cabal state=link
   sudo: yes
 
 - name: symlink alex
-  shell: >
-    ln -s /opt/alex/3.1.3/bin/alex /usr/bin/alex
+- file: src=/opt/alex/3.1.3/bin/alex dest=/usr/bin/alex state=link
   sudo: yes
 
 - name: symlink happy
-  shell: >
-    ln -s /opt/happy/1.19.4/bin/happy /usr/bin/happy
+- file: src=/opt/happy/1.19.4/bin/happy dest=/usr/bin/happy state=link
   sudo: yes
 
 - name: symlink ghci
-  shell: >
-    ln -s /opt/ghc/7.8.4/bin/ghci /usr/bin/ghci
+- file: src=/opt/ghc/7.8.4/bin/ghci dest=/usr/bin/ghci state=link
   sudo: yes
 
 - name: symlink ghci-pkg
-  shell: >
-    ln -s /opt/ghc/7.8.4/bin/ghc-pkg /usr/bin/ghc-pkg
+- file: src=/opt/ghc/7.8.4/bin/ghc-pkg dest=/usr/bin/ghc-pkg state=link
   sudo: yes
 
 - name: symlink hsc2hs
-  shell: >
-    ln -s /opt/ghc/7.8.4/bin/hsc2hs /usr/bin/hsc2hs
+- file: src=/opt/ghc/7.8.4/bin/hsc2hs dest=/usr/bin/hsc2hs state=link
   sudo: yes
-
