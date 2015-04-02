@@ -1,0 +1,78 @@
+---
+- name: set up ghc and cabal
+  hosts: localhost
+
+  tasks:
+  - name: update repo cache
+    apt: update_cache=yes
+    sudo: yes
+
+  - name: install software-properties-common
+    apt: name=software-properties-common
+    sudo: yes
+    when: ansible_distribution_version|int >= 12.10
+
+  - name: install python-software-properties
+    apt: name=python-software-properties
+    sudo: yes
+    when: ansible_distribution_version|int <= 12.04
+
+  - name: add PPA repo
+    apt_repository: repo='ppa:hvr/ghc' state=present
+    sudo: yes
+
+  - name: update repo cache
+    apt: update_cache=yes
+    sudo: yes
+
+  - name: install ghc
+    apt: name=ghc=7.8.4 state=present
+    sudo: yes
+
+  - name: install cabal install 1.20
+    apt: name=cabal-install=1.20
+    sudo: yes
+
+  - name: install happy-1.19.4
+    apt: name=happy=1.19.4
+    sudo: yes
+
+  - name: install  alex-3.1.3
+    apt: name=alex=3.1.3
+    sudo: yes
+
+  - name: symlink ghc
+  - file: src=/opt/ghc/7.8.4/bin/ghc dest=/usr/bin/ghc state=link
+    sudo: yes
+
+  - name: symlink cabal
+  - file: src=/opt/cabal/1.20/bin/cabal dest=/usr/bin/cabal state=link
+    sudo: yes
+
+  - name: symlink alex
+  - file: src=/opt/alex/3.1.3/bin/alex dest=/usr/bin/alex state=link
+    sudo: yes
+
+  - name: symlink happy
+  - file: src=/opt/happy/1.19.4/bin/happy dest=/usr/bin/happy state=link
+    sudo: yes
+
+  - name: symlink ghci
+  - file: src=/opt/ghc/7.8.4/bin/ghci dest=/usr/bin/ghci state=link
+    sudo: yes
+
+  - name: symlink ghci-pkg
+  - file: src=/opt/ghc/7.8.4/bin/ghc-pkg dest=/usr/bin/ghc-pkg state=link
+    sudo: yes
+
+  - name: symlink hsc2hs
+  - file: src=/opt/ghc/7.8.4/bin/hsc2hs dest=/usr/bin/hsc2hs state=link
+    sudo: yes
+
+  - name: install zlib1g-dev
+    apt: name=zlib1g-dev state=present
+    sudo: yes
+
+  - name: install libcurl4-gnutls-dev
+    apt: name=libcurl4-gnutls-dev state=present
+    sudo: yes
